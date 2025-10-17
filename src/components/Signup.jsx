@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import InputUI from './ui/InputUI';
 import ButtonUI from './ui/ButtonUI';
 import ParagraphUI from './ui/ParagraphUI';
 
 
-const Signup = ({onSwitchToLogin}) => {
+
+const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -15,13 +17,13 @@ const Signup = ({onSwitchToLogin}) => {
 
         e.preventDefault();
         if (!email || !password) {
-          alert("Compila tutti i campi");
-          return;
+            alert("Compila tutti i campi");
+            return;
         }
         // Qui metteremo la logica di autenticazione
         console.log("Email e password");
         console.log({ name, surname, email, password });
-      };
+    };
 
 
     return (
@@ -30,26 +32,29 @@ const Signup = ({onSwitchToLogin}) => {
                 {/* Testo lato sinistro */}
                 <div className="lg:w-3/5 md:w-1/2 mb-10 lg:mb-0 lg:pr-16">
                     <h1 className="text-4xl font-medium text-white mb-4">
-                        Slow-carb next level ethical authentic, poko scenester
+                        Più tempo per ascoltare, meno per gestire.
                     </h1>
                     <p className="leading-relaxed text-gray-400">
-                        Poke slow-carb mixtape knausgaard, typewriter street art gentrify hammock starladder roathse. Craies vegan tousled etsy austin.
+                        Una piattaforma pensata per gli psicologi: gestisci sedute, pazienti, calendario e fatture in modo semplice e sicuro.
                     </p>
                 </div>
 
                 {/* Form lato destro */}
                 <div className="lg:w-2/6 md:w-1/2 w-full bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:ml-auto">
                     <h2 className="text-white text-xl font-semibold mb-6">Registrati</h2>
-                  
+
                     <ParagraphUI
                         textProp={
                             <>
                                 Hai gia un account?{" "}
                                 <span
                                     className="text-yellow-500 cursor-pointer hover:underline"
-                                    onClick={onSwitchToLogin}
+                                  
                                 >
-                                    Accedi
+                                    <Link to="/login">
+                                        Accedi
+                                    </Link>
+                                    
                                 </span>
                             </>
                         }
@@ -100,7 +105,7 @@ const Signup = ({onSwitchToLogin}) => {
                             />
 
                         </div>
-                        
+
                         {/* Email */}
                         <div className="mb-4 text-left">
 
@@ -153,9 +158,6 @@ const Signup = ({onSwitchToLogin}) => {
 
                     </form>
 
-                    <p className="text-xs text-gray-400 mt-3">
-                        Literally you probably haven't heard of them jean shorts.
-                    </p>
                 </div>
             </div>
         </section>
