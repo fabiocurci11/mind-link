@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import InputUI from './ui/InputUI';
 import ButtonUI from './ui/ButtonUI';
 
@@ -8,6 +9,7 @@ import ParagraphUI from './ui/ParagraphUI';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         console.log("HandleSubmit");
@@ -21,6 +23,8 @@ const Login = () => {
         // Qui metteremo la logica di autenticazione
         console.log("Email e password");
         console.log({ email, password });
+        console.log("Navigate to dashboard")
+        navigate("/dashboard")
     };
 
 

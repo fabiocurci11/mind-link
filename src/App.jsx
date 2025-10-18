@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Dashboard from "./components/Dashboard";
 
 // Varianti per le animazioni di entrata/uscita
 const pageVariants = {
@@ -57,6 +58,22 @@ const AnimatedRoutes = () => {
             </motion.div>
           }
         />
+
+        <Route
+          path="/dashboard"
+          element={
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={pageVariants}
+              transition={pageTransition}
+              className="absolute inset-0 bg-gray-900"
+            >
+              <Dashboard />
+            </motion.div>
+          }
+        />
       </Routes>
     </AnimatePresence>
   );
@@ -66,7 +83,7 @@ const App = () => {
   return (
     <Router>
       {/* Wrapper principale per gestire lo sfondo e le pagine assolute */}
-      <div className="relative min-h-screen w-full bg-gray-900">
+      <div className="relative min-h-screen w-full bg-gray-900 text-center">
         <AnimatedRoutes />
       </div>
     </Router>

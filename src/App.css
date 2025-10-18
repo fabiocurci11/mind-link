@@ -1,12 +1,4 @@
 
-#root {
-  display: flex;
-  justify-content: center; /* orizzontale */
-  align-items: center;    /* verticale */
-  min-height: 100vh;  
-  padding: 0;
-}
-
 .logo {
   height: 6em;
   padding: 1.5em;
