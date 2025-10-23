@@ -14,7 +14,8 @@ const ButtonUI = ({
   fontSizeProp = "text-lg",
   fontWeightProp = "font-medium",
   cursorPointerProp = "cursor-pointer",
-  widthProp
+  widthProp,
+  onClick
 }) => {
 
   const cssClasses = [
@@ -38,6 +39,7 @@ const ButtonUI = ({
     <button
       type={type}           // ← aggiunto qui!
       className={cssClasses}
+      onClick={onClick}
     
     >
       {textProp}

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import InputUI from './ui/InputUI';
 import ButtonUI from './ui/ButtonUI';
+import { signup } from "../services/authService";
 import ParagraphUI from './ui/ParagraphUI';
 
 
@@ -10,24 +11,31 @@ import ParagraphUI from './ui/ParagraphUI';
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [name, setName] = useState("");
-    const [surname, setSurname] = useState("");
+    const [first_name, setFirst_name] = useState("");
+    const [last_name, setLastname] = useState("");
     const navigate = useNavigate();
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         console.log("HandleSubmit");
 
         e.preventDefault();
-        if (!email || !password) {
+        if (!first_name || !last_name || !email || !password) {
             alert("Compila tutti i campi");
             return;
         }
         // Qui metteremo la logica di autenticazione
-        console.log("Email e password");
-        console.log({ name, surname, email, password });
-        navigate("/login")
+        try {
+            const data = await signup(first_name, last_name, email, password);
+            console.log("Registrazione riuscita:", data);
+            console.log("Navigate to login")
+            navigate("/login")
+        } catch (err) {
+            console.error(err.message);
+            alert(err.message);
+        }
         
+
     };
 
 
@@ -54,12 +62,12 @@ const Signup = () => {
                                 Hai gia un account?{" "}
                                 <span
                                     className="text-yellow-500 cursor-pointer hover:underline"
-                                  
+
                                 >
                                     <Link to="/login">
                                         Accedi
                                     </Link>
-                                    
+
                                 </span>
                             </>
                         }
@@ -69,19 +77,19 @@ const Signup = () => {
                         onSubmit={handleSubmit}
                         className="w-full"
                     >
-                        {/* Name */}
+                        {/* first_name */}
                         <div className="mb-4 text-left">
 
-                            <label htmlFor="name" className="block text-sm mb-1">
+                            <label htmlFor="first_name" className="block text-sm mb-1">
                                 Nome
                             </label>
 
                             <InputUI
-                                id="name"
-                                name="name"
+                                id="first_name"
+                                name="first_name"
                                 type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                value={first_name}
+                                onChange={(e) => setFirst_name(e.target.value)}
                                 placeholder="Inserisci il tuo nome"
                                 widthProp="w-full"
                                 paddingProp="px-3 py-2"
@@ -90,19 +98,19 @@ const Signup = () => {
 
                         </div>
 
-                        {/* Surname */}
+                        {/* last_name */}
                         <div className="mb-4 text-left">
 
-                            <label htmlFor="surname" className="block text-sm mb-1">
+                            <label htmlFor="last_name" className="block text-sm mb-1">
                                 Cognome
                             </label>
 
                             <InputUI
-                                id="surname"
-                                name="surname"
+                                id="last_name"
+                                name="last_name"
                                 type="text"
-                                value={surname}
-                                onChange={(e) => setSurname(e.target.value)}
+                                value={last_name}
+                                onChange={(e) => setLastname(e.target.value)}
                                 placeholder="Inserisci il tuo cognome"
                                 widthProp="w-full"
                                 paddingProp="px-3 py-2"

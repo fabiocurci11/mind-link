@@ -1,4 +1,5 @@
 import { LoginResponseDTO } from '../dto/LoginResponseDTO';
+import { SignupResponseDTO } from '../dto/SignupResponseDTO';
 
 
 
@@ -25,20 +26,21 @@ export const login = async (email, password) => {
 
 
 
-
-export const signup = async (name, surname, email, password) => {
+export const signup = async (first_name, last_name, email, password) => {
   const res = await fetch(`${API_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, surname, email, password }),
+    body: JSON.stringify({ first_name, last_name, email, password }),
   });
 
+  const data = await res.json();
+
   if (!res.ok) {
-    const errData = await res.json();
-    throw new Error(errData.message || "Errore durante la registrazione");
+    throw new Error(data.message || "Errore durante la registrazione");
   }
 
-  return res.json();
+  // Usa la factory per creare un DTO coerente
+  return SignupResponseDTO(data.email, data.name, data.role);
 };

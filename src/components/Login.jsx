@@ -5,8 +5,6 @@ import InputUI from './ui/InputUI';
 import ButtonUI from './ui/ButtonUI';
 import SplitText from "../react-bits-animation/SplitText";
 import { login } from "../services/authService";
-
-
 import ParagraphUI from './ui/ParagraphUI';
 
 const Login = () => {
@@ -34,8 +32,7 @@ const Login = () => {
             console.error(err.message);
             alert(err.message);
         }
-        console.log("Email e password");
-        console.log({ email, password });
+        
     };
 
 
