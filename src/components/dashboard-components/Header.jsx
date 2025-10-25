@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ButtonUI from '../ui/ButtonUI';
 import { useNavigate } from "react-router-dom";
 
 
 const Header = ({ setSidebarOpen }) => {
-  // Definiamo uno stato locale per il componente
-  const [count, setCount] = useState(0);
+  
   const navigate = useNavigate();
 
   const handleClick = () => {
